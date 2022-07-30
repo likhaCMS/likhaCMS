@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_properties",
+  "info": {
+    "singularName": "global-property",
+    "pluralName": "global-properties",
+    "displayName": "globalProperty",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "variables": {
+      "type": "richtext",
+      "default": "{}",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,1 @@
+import{cE as g,aa as r,l as f}from"./index.5fc0fc72.js";function t(){const{emit:e,proxy:s}=r(),n=f(null);function a(){n.value.show()}function o(){n.value.hide()}function c(l){e("ok",l),o()}function u(){e("hide")}return Object.assign(s,{show:a,hide:o}),{dialogRef:n,onDialogHide:u,onDialogOK:c,onDialogCancel:o}}const i=["ok","hide"];t.emits=i;t.emitsObject=g(i);export{t as u};

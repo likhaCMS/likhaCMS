@@ -1,0 +1,38 @@
+{
+  "name": "likha-editor",
+  "version": "0.0.1",
+  "description": "likha-editor",
+  "productName": "likha-editor",
+  "author": "Trinmar Boado <timi.boado@gmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "json5": "^2.2.1",
+    "monaco-editor": "^0.33.0",
+    "quasar": "^2.6.0",
+    "splitpanes": "^3.1.1",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^1.0.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.10.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^8.5.0"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "kind": "collectionType",
+  "collectionName": "components",
+  "info": {
+    "singularName": "component",
+    "pluralName": "components",
+    "displayName": "component",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "uid",
+      "required": true
+    },
+    "template": {
+      "type": "richtext"
+    },
+    "templateStaging": {
+      "type": "richtext"
+    },
+    "templateDev": {
+      "type": "richtext"
+    },
+    "props": {
+      "type": "richtext"
+    },
+    "propsStaging": {
+      "type": "richtext"
+    },
+    "propsDev": {
+      "type": "richtext"
+    },
+    "emits": {
+      "type": "richtext"
+    },
+    "emitsStaging": {
+      "type": "richtext"
+    },
+    "emitsDev": {
+      "type": "richtext"
+    },
+    "data": {
+      "type": "richtext",
+      "default": "{}",
+      "required": true
+    },
+    "dataStaging": {
+      "type": "richtext",
+      "default": "{}",
+      "required": true
+    },
+    "dataDev": {
+      "type": "richtext",
+      "default": "{}",
+      "required": true
+    },
+    "computed": {
+      "type": "richtext"
+    },
+    "computedStaging": {
+      "type": "richtext"
+    },
+    "computedDev": {
+      "type": "richtext"
+    },
+    "watch": {
+      "type": "richtext"
+    },
+    "watchStaging": {
+      "type": "richtext"
+    },
+    "watchDev": {
+      "type": "richtext"
+    },
+    "methods": {
+      "type": "richtext"
+    },
+    "methodsStaging": {
+      "type": "richtext"
+    },
+    "methodsDev": {
+      "type": "richtext"
+    },
+    "lifeCycleEvents": {
+      "type": "richtext"
+    },
+    "lifeCycleEventsStaging": {
+      "type": "richtext"
+    },
+    "lifeCycleEventsDev": {
+      "type": "richtext"
+    },
+    "style": {
+      "type": "richtext"
+    },
+    "styleStaging": {
+      "type": "richtext"
+    },
+    "styleDev": {
+      "type": "richtext"
+    },
+    "versions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::version.version",
+      "mappedBy": "component"
+    },
+    "releases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::release.release",
+      "mappedBy": "component"
+    }
+  }
+}
