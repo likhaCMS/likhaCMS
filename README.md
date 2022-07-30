@@ -4,7 +4,7 @@ Drag and Drop Page Builder, Component Code Editor, Dev and Staging Environment
 
 Website: https://likhacms.github.io/
 
-https://github.com/sponsors/likhaCMS
+Support: https://github.com/sponsors/likhaCMS
 
 ## Roadmap
  - [x] Component Code Editor
