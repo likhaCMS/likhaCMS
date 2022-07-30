@@ -1,6 +1,7 @@
 ## LikhaCMS
 LikhaCMS is a Web App Builder with Built-in UI Building Blocks,  
 Drag and Drop Page Builder, Component Code Editor, Dev and Staging Environment
+
 https://github.com/sponsors/likhaCMS
 
 ## Roadmap
