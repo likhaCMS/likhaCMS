@@ -10,6 +10,9 @@ export default boot(async ({ app }) => {
   // const { $likhaAPI, $qs } = app.config.globalProperties
   app.component('lk-component', lkComponent)
   // something to do
+  app.config.globalProperties.$quasar = $quasar
+
+  app.config.globalProperties.$cachedComponents = {}
 
   Object.keys($quasar).forEach(key => {
     if (key[0].toLowerCase() === 'q') {

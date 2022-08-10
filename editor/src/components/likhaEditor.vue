@@ -58,7 +58,7 @@ import { defineComponent, nextTick } from 'vue'
 // }
 
 export default defineComponent({
-  emits: ['saved'],
+  emits: ['saved', 'update:modelValue'],
   props: {
     modelValue: {
       type: Array,
@@ -134,7 +134,8 @@ export default defineComponent({
           // this['monacoEditor-' + code.prop].model.setValue(this.codes[i].value)
         }
         this.codeHasChanges = false
-        this.$emit('saved')
+        // this.$emit('saved')
+        this.$emit('update:modelValue', this.codes)
       } catch (error) {}
       this.loading = false
     }

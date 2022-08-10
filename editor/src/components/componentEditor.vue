@@ -40,7 +40,7 @@
       <!-- <q-btn flat round dense icon="whatshot" /> -->
       <span class="q-gutter-sm">
         <!-- <q-btn icon="history" label="History" @click="showHistory" /> -->
-        <q-btn icon="approval" label="stage" @click="showHistory" :loading="loading" />
+        <q-btn icon="approval" label="stage" @click="showHistory" :loading="loading" v-show="env === '/dev-env'" />
         <q-btn icon="precision_manufacturing" label="Publish" @click="publish" v-show="env === '/staging-env'" />
       </span>
     </q-toolbar>
@@ -50,18 +50,18 @@
           <splitpanes horizontal>
             <pane min-size="20">
               <!-- {{ component.id }} -->
-              <likha-editor v-if="code1.length" :modelValue="code1" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code1.length" v-model="code1" height="100%" :component="component" @saved="reloadPreview()" />
             </pane>
             <pane min-size="20">
               <!-- {{component}} -->
-              <likha-editor v-if="code2.length" :modelValue="code2" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code2.length" v-model="code2" height="100%" :component="component" @saved="reloadPreview()" />
             </pane>
           </splitpanes>
         </pane>
         <pane min-size="20">
           <splitpanes horizontal>
             <pane min-size="20" size="30">
-              <likha-editor v-if="code3.length" :modelValue="code3" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code3.length" v-model="code3" height="100%" :component="component" @saved="reloadPreview()" />
             </pane>
             <pane min-size="20" class="bg-dark col column">
               <div class="row">

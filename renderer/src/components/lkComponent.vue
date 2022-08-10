@@ -28,7 +28,7 @@ export default defineComponent({
   },
   async setup (props) {
     const lkComponent = getCurrentInstance()
-    const { $likhaAPI, $qs } = lkComponent.appContext.config.globalProperties
+    const { $likhaAPI, $qs, $cachedComponents } = lkComponent.appContext.config.globalProperties
     const refComp = ref(null)
     let area = ''
 
@@ -42,7 +42,14 @@ export default defineComponent({
           $eq: props.name
         }
       },
-      populate: ['components'],
+      populate: {
+        releases: {
+          sort: ['createdAt:desc'],
+          pagination: {
+            limit: 1
+          }
+        }
+      },
       pagination: {
         start: 0,
         limit: 10
@@ -52,7 +59,6 @@ export default defineComponent({
     })
 
     try {
-      comp = (await $likhaAPI.get('/components?' + query)).data.data[0].attributes
       // console.log('props.name', $route.path, comp)
 
       let env = $route.path.split('/')[1].split('-')[0]
@@ -74,6 +80,17 @@ export default defineComponent({
         if (firstToken.includes('return')) return str
         return 'return ' + str
       }
+
+      if (!Env && $cachedComponents[comp.name]) {
+        comp = $cachedComponents[comp.name]
+      } else {
+        comp = (await $likhaAPI.get('/components?' + query)).data.data[0].attributes
+      }
+
+      const getLatestCompVersion = async () => {
+        $cachedComponents[comp.name] = (await $likhaAPI.get('/components?' + query)).data.data[0].attributes
+      }
+      getLatestCompVersion()
 
       area = 'props' + Env
       const props = (new Function(addReturnIfNeeded(comp[area])))() || []

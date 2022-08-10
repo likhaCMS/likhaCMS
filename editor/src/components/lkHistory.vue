@@ -62,7 +62,7 @@
               style="max-width: 300px"
             >
               <q-card-section>
-                <div class="text-h6">Staging Deployment</div>
+                <div class="text-h6">Commit Changes</div>
               </q-card-section>
 
               <q-card-section class="q-pt-none">
@@ -72,7 +72,7 @@
 
               <q-card-actions align="right" class="text-primary">
                 <q-btn flat label="Cancel" v-close-popup @click="onDialogCancel" />
-                <q-btn :disabled="!data.summary || (!codeChanges.length && versions.length)" flat label="Commit" @click="save" />
+                <q-btn :disabled="!data.summary || (!codeChanges.length && versions.length)" flat label="Commit to Staging" @click="save" />
               </q-card-actions>
             </q-card>
           </div>
