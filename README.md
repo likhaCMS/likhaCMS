@@ -15,9 +15,9 @@ Support: https://github.com/sponsors/likhaCMS
  - [x] Global Reactive Variables
  - [x] SEO (useMeta)
  - [x] Component Caching / Memoization
- - [ ] Global Functions & Reactive Variables Code Editor
- - [ ] Import JS (CDN)
+ - [x] Global Functions & Reactive Variables Code Editor
  - [ ] Login with Github
+ - [ ] Import JS (CDN)
  - [ ] Documentation
  - [ ] Video Tutorials and Articles
  - [ ] **UI Component MarketPlace**

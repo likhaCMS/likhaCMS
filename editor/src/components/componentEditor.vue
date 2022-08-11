@@ -40,6 +40,8 @@
       <!-- <q-btn flat round dense icon="whatshot" /> -->
       <span class="q-gutter-sm">
         <!-- <q-btn icon="history" label="History" @click="showHistory" /> -->
+        <q-btn icon="language" label="Global Props | Functions" @click="showGlobalEditor" />
+        <!-- <q-btn icon="approval" label="HELPER Functions" /> -->
         <q-btn icon="approval" label="stage" @click="showHistory" :loading="loading" v-show="env === '/dev-env'" />
         <q-btn icon="precision_manufacturing" label="Publish" @click="publish" v-show="env === '/staging-env'" />
       </span>
@@ -50,18 +52,18 @@
           <splitpanes horizontal>
             <pane min-size="20">
               <!-- {{ component.id }} -->
-              <likha-editor v-if="code1.length" v-model="code1" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code1.length" v-model="code1" height="100%" :component="component" @update:modelValue="reloadPreview()" />
             </pane>
             <pane min-size="20">
               <!-- {{component}} -->
-              <likha-editor v-if="code2.length" v-model="code2" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code2.length" v-model="code2" height="100%" :component="component" @update:modelValue="reloadPreview()" />
             </pane>
           </splitpanes>
         </pane>
         <pane min-size="20">
           <splitpanes horizontal>
             <pane min-size="20" size="30">
-              <likha-editor v-if="code3.length" v-model="code3" height="100%" :component="component" @saved="reloadPreview()" />
+              <likha-editor v-if="code3.length" v-model="code3" height="100%" :component="component" @update:modelValue="reloadPreview()" />
             </pane>
             <pane min-size="20" class="bg-dark col column">
               <div class="row">
@@ -89,7 +91,10 @@
 </template>
 <script>
 import { defineComponent } from 'vue'
-// const likhaEditor = import('components/likhaEditor.vue')
+import globalEditor from 'components/globalEditor.vue'
+import lkHistory from 'components/lkHistory.vue'
+import stagingDeploy from 'components/stagingDeploy.vue'
+// 'components/stagingDeploy.vue'
 
 export default defineComponent({
   components: {
@@ -119,9 +124,19 @@ export default defineComponent({
     env: '/dev-env'
   }),
   methods: {
+    async showGlobalEditor () {
+      this.$q.dialog({
+        component: globalEditor
+      }).onOk((vars) => {
+        console.log('vars', vars)
+      }).onCancel(() => {
+        console.log('closed')
+        this.reloadPreview()
+      })
+    },
     async showHistory () {
       this.$q.dialog({
-        component: (await import('components/lkHistory.vue')).default,
+        component: lkHistory,
 
         // props forwarded to your custom component
         componentProps: {
@@ -232,7 +247,7 @@ export default defineComponent({
     async stage () {
       this.env = '/dev-env'
       this.$q.dialog({
-        component: (await import('components/stagingDeploy.vue')).default,
+        component: stagingDeploy,
 
         // props forwarded to your custom component
         componentProps: {
@@ -335,10 +350,12 @@ export default defineComponent({
       }
       this.loading = false
     },
-    reloadPreview () {
+    async reloadPreview () {
       // console.log('iframe this.$refs', this.$refs)
       const previousPage = this.$refs.iframe.src
+      await this.$nextTick()
       this.$refs.iframe.src = ''
+      await this.$nextTick()
       this.$refs.iframe.src = previousPage
     },
     filterComponents (val, update, abort) {
