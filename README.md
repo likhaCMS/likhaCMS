@@ -16,7 +16,7 @@ Support: https://github.com/sponsors/likhaCMS
  - [x] SEO (useMeta)
  - [x] Component Caching / Memoization
  - [x] Global Functions & Reactive Variables Code Editor
- - [ ] Login with Github
+ - [x] Login with Github
  - [ ] Import JS (CDN)
  - [ ] Documentation
  - [ ] Video Tutorials and Articles
