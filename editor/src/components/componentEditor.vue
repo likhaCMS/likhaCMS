@@ -44,6 +44,25 @@
         <!-- <q-btn icon="approval" label="HELPER Functions" /> -->
         <q-btn icon="approval" label="stage" @click="showHistory" :loading="loading" v-show="env === '/dev-env'" />
         <q-btn icon="precision_manufacturing" label="Publish" @click="publish" v-show="env === '/staging-env'" />
+        <q-btn v-if="$global.dev" round :label="$usernameAvatar.value" dark color="blue-grey-10" class="text-light-blue" >
+          <q-menu>
+            <q-list style="min-width: 100px">
+              <q-item >
+                <q-item-section>
+                  {{ $global.dev.email }}
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item @click="$logoutLikhaUser" clickable v-close-popup>
+                <q-item-section>Logout</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <q-btn v-else icon="fa-brands fa-github" label="Login" dark color="blue-grey-10" class="text-light-blue"
+          @click="$popupCenter({url: $likhaAPI.defaults.baseURL + '/connect/github', title: 'LikhaCMS Login', w: 900, h: 600})"
+        />
+
       </span>
     </q-toolbar>
     <div class="row bg-pink" style="height: calc(100vh - 56px); max-height: calc(100vh - 56px);">

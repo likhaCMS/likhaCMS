@@ -1,6 +1,14 @@
 
 const routes = [
   {
+    path: '/',
+    component: () => import('components/pageEditor.vue')
+    // component: () => import('layouts/MainLayout.vue'),
+    // children: [
+    //   { path: '', component: () => import('pages/IndexPage.vue') }
+    // ]
+  },
+  {
     path: '/component-editor/:name',
     component: () => import('components/componentEditor.vue')
     // component: () => import('layouts/MainLayout.vue'),

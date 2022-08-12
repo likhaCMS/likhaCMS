@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHr LpR lfr">
-    <q-header elevated class="bg-dark text-white" height-hint="98">
+    <q-header elevated class="bg-dark text-white">
       <q-toolbar class="shadow-6">
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
@@ -29,8 +29,30 @@
         </q-toolbar-title>
 
         <!-- <q-btn dense flat round icon="menu" @click="toggleRightDrawer" /> -->
-        <q-btn dense icon="preview" label="preview" @click="preview" />
-        <q-btn :disabled="!hasChanges" dense icon="save" label="save" @click="save" />
+        <span class="q-gutter-sm">
+          <q-btn dense icon="preview" label="preview &nbsp;" @click="preview" />
+          <q-btn dense :disabled="!hasChanges" icon="save" label="save &nbsp;" @click="save" />
+
+          <q-btn v-if="$global.dev" dense round :label="$usernameAvatar.value" dark color="blue-grey-10" class="text-light-blue" >
+            <q-menu anchor="bottom right" self="top right">
+              <q-list style="min-width: 100px">
+                <q-item >
+                  <q-item-section>
+                    {{ $global.dev.email }}
+                  </q-item-section>
+                </q-item>
+                <q-separator />
+                <q-item @click="$logoutLikhaUser" clickable v-close-popup>
+                  <q-item-section>Logout</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+          <q-btn v-else dense icon="fa-brands fa-github" label="Login" dark color="blue-grey-10" class="text-light-blue"
+            @click="$popupCenter({url: $likhaAPI.defaults.baseURL + '/connect/github', title: 'LikhaCMS Login', w: 900, h: 600})"
+          />
+        </span>
+
       </q-toolbar>
       <div class="row">
         <q-input v-model="page.path" readonly dense dark label="path" class="q-ma-sm" />
