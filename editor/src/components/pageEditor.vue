@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHr LpR lfr">
+  <q-layout view="lhh LpR lfr">
     <q-header elevated class="bg-dark text-white">
       <q-toolbar class="shadow-6">
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
@@ -33,24 +33,7 @@
           <q-btn dense icon="preview" label="preview &nbsp;" @click="preview" />
           <q-btn dense :disabled="!hasChanges" icon="save" label="save &nbsp;" @click="save" />
 
-          <q-btn v-if="$global.dev" dense round :label="$usernameAvatar.value" dark color="blue-grey-10" class="text-light-blue" >
-            <q-menu anchor="bottom right" self="top right">
-              <q-list style="min-width: 100px">
-                <q-item >
-                  <q-item-section>
-                    {{ $global.dev.email }}
-                  </q-item-section>
-                </q-item>
-                <q-separator />
-                <q-item @click="$logoutLikhaUser" clickable v-close-popup>
-                  <q-item-section>Logout</q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-btn>
-          <q-btn v-else dense icon="fa-brands fa-github" label="Login" dark color="blue-grey-10" class="text-light-blue"
-            @click="$popupCenter({url: $likhaAPI.defaults.baseURL + '/connect/github', title: 'LikhaCMS Login', w: 900, h: 600})"
-          />
+          <login-status />
         </span>
 
       </q-toolbar>
@@ -209,7 +192,11 @@
       </div>
     </q-page-container>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" class="column col">
+    <q-drawer v-model="leftDrawerOpen" side="left" elevated @mouseleave="leftDrawerOpen = false">
+      <essential-link />
+    </q-drawer>
+
+    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" class="column col" elevated>
       <div class="absolute-top" style="height: 50px;">
         <q-toolbar class="bg-dark text-white col">
           <q-input dark dense standout
@@ -330,13 +317,21 @@
 /* eslint-disable no-new-func */
 /* eslint-disable vue/no-parsing-error */
 import { ref } from 'vue'
+import EssentialLink from 'components/EssentialLink.vue'
+import loginStatus from 'components/loginStatus.vue'
 
 export default {
+  components: {
+    EssentialLink,
+    loginStatus
+  },
   beforeUnmount () {
     document.removeEventListener('keydown', this.ctrlSave)
 
-    this.editor.model.dispose()
-    this.editor.dispose()
+    if (this.editor && this.editor.model) {
+      this.editor.model.dispose()
+      this.editor.dispose()
+    }
   },
   mounted () {
     document.addEventListener('keydown', this.ctrlSave)
