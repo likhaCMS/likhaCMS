@@ -87,6 +87,14 @@ export default boot(async ({ app, router }) => {
     return ''
   })
 
+  window.$logoutLikhaUser = () => {
+    $global.dev = null
+    LocalStorage.remove('$likhaDev')
+    LocalStorage.remove('$likhaJWT')
+    delete $likhaAPI.defaults.headers.common.Authorization
+  }
+  app.config.globalProperties.$logoutLikhaUser = window.$logoutLikhaUser
+
   window.$likhaAuthenticate = async () => {
     const $likhaJWT = LocalStorage.getItem('$likhaJWT')
     console.log('authenticating', $likhaJWT)
@@ -104,14 +112,6 @@ export default boot(async ({ app, router }) => {
     }
   }
   await window.$likhaAuthenticate()
-
-  window.$logoutLikhaUser = () => {
-    $global.dev = null
-    LocalStorage.remove('$likhaDev')
-    LocalStorage.remove('$likhaJWT')
-    delete $likhaAPI.defaults.headers.common.Authorization
-  }
-  app.config.globalProperties.$logoutLikhaUser = window.$logoutLikhaUser
 
   router.beforeResolve(async (routeTo, routeFrom, next) => {
     console.log('$router', routeTo)

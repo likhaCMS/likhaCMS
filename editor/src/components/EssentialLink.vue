@@ -30,7 +30,7 @@
         <q-item-section
           avatar
         >
-          <q-icon name="save" />
+          <q-icon :name="l.icon" />
         </q-item-section>
 
         <q-item-section>
@@ -58,7 +58,13 @@ export default defineComponent({
       {
         icon: 'code',
         label: 'Component Editor',
-        caption: 'UI Code Editor',
+        caption: 'Edit your UI using Vue.js',
+        to: '/component-editor'
+      },
+      {
+        icon: 'add_shopping_cart',
+        label: 'Marketplace',
+        caption: 'Get more UI Components',
         to: '/component-editor'
       }
     ]
