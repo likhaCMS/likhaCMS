@@ -65,7 +65,7 @@ export default defineComponent({
         icon: 'add_shopping_cart',
         label: 'Marketplace',
         caption: 'Get more UI Components',
-        to: '/component-editor'
+        to: '/marketplace'
       }
     ]
   })

@@ -28,6 +28,10 @@ const routes = [
     path: '/page-editor',
     component: () => import('components/pageEditor.vue')
   },
+  {
+    path: '/marketplace',
+    component: () => import('pages/MarketPlace.vue')
+  },
 
   // Always leave this as last one,
   // but you can also remove it

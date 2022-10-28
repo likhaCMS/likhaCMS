@@ -54,4 +54,9 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 
 ---
 
+## Github
+Client ID: 18752014b0d81bab6d9c
+Client Secret: e2f8ec0a899dbbc2a5113b633bae72beab26ffbf
+redirect URL: /#/
+
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>

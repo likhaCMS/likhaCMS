@@ -114,12 +114,12 @@ export default boot(async ({ app, router }) => {
   await window.$likhaAuthenticate()
 
   router.beforeResolve(async (routeTo, routeFrom, next) => {
-    console.log('$router', routeTo)
-
+    console.log('$router hoyyyyy', routeTo, 'opener', window.opener)
     if (routeTo.query?.access_token && window.opener) {
       // asd
       try {
         const { data } = await $likhaAPI.get('/auth/github/callback?' + $qs.stringify(routeTo.query))
+        console.log('login na hoy')
         window.opener.$setLikhaUser(data)
         window.close()
       } catch (error) {
