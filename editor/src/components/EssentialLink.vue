@@ -1,7 +1,7 @@
 <template>
   <div class="absolute-top" style="height: 50px;" >
     <q-toolbar class="bg-dark text-white col">
-      <q-btn>
+      <q-btn round>
         <q-avatar>
           <img src="https://likhacms.github.io/assets/images/likha-logo.png">
         </q-avatar>

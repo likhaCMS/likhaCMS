@@ -110,7 +110,7 @@
         <!-- <div class="col">{{ width }}</div> -->
       </div>
     </q-page-container>
-    <q-drawer v-model="leftDrawerOpen" side="left" elevated @mouseleave="leftDrawerOpen = false">
+    <q-drawer v-model="leftDrawerOpen" side="left" elevated :mini="mini" @mouseout="mini = true" @mouseover="mini = false" mini-to-overlay>
       <essential-link />
     </q-drawer>
   </q-layout>
@@ -139,7 +139,7 @@ export default defineComponent({
     // this.components = await this.$likhaAPI.get('/components?' + query)).data
   },
   setup () {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(true)
     const rightDrawerOpen = ref(false)
 
     return {
@@ -155,6 +155,7 @@ export default defineComponent({
     }
   },
   data: () => ({
+    mini: true,
     loading: true,
     width: '50%',
     component: null,

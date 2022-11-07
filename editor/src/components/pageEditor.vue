@@ -2,7 +2,7 @@
   <q-layout view="lhh LpR lfr">
     <q-header elevated class="bg-dark text-white">
       <q-toolbar class="shadow-6">
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+        <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
 
         <q-toolbar-title>
           <q-select ref="qSelect"
@@ -192,7 +192,7 @@
       </div>
     </q-page-container>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" elevated @mouseleave="leftDrawerOpen = false">
+    <q-drawer v-model="leftDrawerOpen" side="left" elevated :mini="mini" @mouseout="mini = true" @mouseover="mini = false" mini-to-overlay>
       <essential-link />
     </q-drawer>
 
@@ -689,10 +689,11 @@ export default {
     }
   },
   setup () {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(true)
     const rightDrawerOpen = ref(false)
-
+    const mini = ref(true)
     return {
+      mini,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value

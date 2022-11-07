@@ -2,7 +2,7 @@
   <q-layout view="lhh LpR lfr">
     <q-header elevated class="bg-dark text-white">
       <q-toolbar class="shadow-6">
-        <q-btn dense flat round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" />
+        <!-- <q-btn dense flat round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" /> -->
 
         <q-toolbar-title>
           Marketplace
@@ -18,7 +18,7 @@
 
       </q-toolbar>
       <div class="row q-pa-md">
-        <q-btn icon="add_shopping_cart" label="Get more out of LikhaCMS" class="q-ml-md" flat color="grey" dense />
+        <q-btn icon="add_shopping_cart" label="Get more out of LikhaCMS" class="q-ml-md no-pointer-events" flat color="grey" dense />
         <q-space />
         <!-- <q-input modelValue="page.path" dense dark /> -->
         <q-input dark dense standout
@@ -76,7 +76,7 @@
       </div>
     </q-page-container>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" elevated @mouseleave="leftDrawerOpen = false">
+    <q-drawer :mini="mini" v-model="leftDrawerOpen" side="left" elevated @mouseout="mini = true" @mouseover="mini = false" mini-to-overlay>
       <essential-link />
     </q-drawer>
 
@@ -92,7 +92,9 @@ import { ref } from 'vue'
 
 const searchText = ref('')
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(true)
+
+const mini = ref(false)
 
 function getComponents () {}
 
