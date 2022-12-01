@@ -73,7 +73,9 @@ export default boot(async ({ app, router }) => {
           env: ''
         }),
         created () {
-          this.env = this.$route.path.split('/')[1].split('-')[0]
+          const envArr = this.$route.path.split('/')[1].split('-')
+          if (envArr[1] !== 'env') return
+          this.env = envArr[0]
           this.env = this.env.charAt(0).toUpperCase() + this.env.slice(1)
         },
         template: `
